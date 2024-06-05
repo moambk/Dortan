@@ -1,0 +1,43 @@
+﻿<Window x:Class="Dortan.Connexion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dortan"
+        mc:Ignorable="d"
+        Title="Connexion" Height="450" Width="800"
+        ResizeMode="CanResizeWithGrip" Closing="Window_Closing">
+        
+    <Grid Background="#FFD8D8D8" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125*" />
+            <RowDefinition Height="184*" />
+            <RowDefinition Height="125*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="184,10,10,41" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="2"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="30,0,30,0">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Foreground" Value="Gray" ></Setter>
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Label Content="(*) Tous les champs sont obligatoires" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Gray"/>
+            <Label Content="Identifiant *"/>
+            <TextBox TextWrapping="Wrap" Text="e-mail"/>
+            <Label Content="Mot de passe *"/>
+            <TextBox TextWrapping="Wrap" Text="*******"/>
+            <Button Content="Connexion" Margin="0,15,0,0" Width="100" Height="25" FontSize="14"/>
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
