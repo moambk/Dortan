@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dortan
 {
-    class Materiel
+    public class Materiel
     {
     }
 }

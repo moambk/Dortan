@@ -14,8 +14,8 @@ namespace Dortan
 
         public class ApplicationData
     {
-       
-            private ObservableCollection<Activite> LesActivites = new ObservableCollection<Activite>;
+
+            private ObservableCollection<Activite> LesActivites;
             private NpgsqlConnection connexion = null;   // futur lien à la BD
 
 

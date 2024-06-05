@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dortan
 {
-    class Agent
+    public class Agent
     {
 		private string identifiant;
 		private string password;
