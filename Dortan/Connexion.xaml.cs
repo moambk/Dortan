@@ -28,5 +28,11 @@ namespace Dortan
         {
             Application.Current.Shutdown();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow ouvrir = new MainWindow();
+            ouvrir.Show();
+        }
     }
 }

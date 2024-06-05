@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="Connexion" Height="450" Width="800"
         ResizeMode="CanResizeWithGrip" Closing="Window_Closing">
-        
+    <Window.DataContext>
+        <local:ApplicationData x:Name="data"/>
+    </Window.DataContext>
     <Grid Background="#FFD8D8D8" Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="125*" />
@@ -30,14 +32,15 @@
                 </Style>
             </StackPanel.Resources>
             <Label Content="(*) Tous les champs sont obligatoires" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Gray"/>
-            <Label Content="Identifiant *"/>
-            <TextBox TextWrapping="Wrap" Text="e-mail"/>
-            <Label Content="Mot de passe *"/>
-            <TextBox TextWrapping="Wrap" Text="*******"/>
-            <Button Content="Connexion" Margin="0,15,0,0" Width="100" Height="25" FontSize="14"/>
+            <Label x:Name="labelId" Content="Identifiant *" Target="{Binding ElementName=txtBoxId, Mode=OneWay}"/>
+            <TextBox x:Name="txtBoxId" TextWrapping="Wrap" Text="{Binding Identifiant}"/>
+            <Label x:Name="labelmpd" Content="Mot de passe *" Target="{Binding ElementName=txtBoxId, Mode=OneWay}"/>
+            <TextBox x:Name="txtBoxMdp" TextWrapping="Wrap" Text="{Binding Password}"/>
+            <Button Content="Connexion" Margin="0,15,0,0" Width="100" Height="25" FontSize="14" Click="Button_Click"/>
         </StackPanel>
 
 
 
     </Grid>
+
 </Window>

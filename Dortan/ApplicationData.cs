@@ -16,9 +16,21 @@ namespace Dortan
     {
 
             private ObservableCollection<Activite> lesActivites = new ObservableCollection<Activite>();
+            private ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
             private NpgsqlConnection connexion = null;   // futur lien à la BD
 
+        public ObservableCollection<Materiel> LesMateriels
+        {
+            get
+            {
+                return this.lesMateriels;
+            }
 
+            set
+            {
+                this.lesMateriels = value;
+            }
+        }
         public ObservableCollection<Activite> LesActivites
         {
             get
@@ -71,7 +83,8 @@ namespace Dortan
             }
         public void Read()
             {
-             this.lesActivites = new ObservableCollection<Activite>();
+             this.LesActivites = new ObservableCollection<Activite>();
+             this.LesMateriels = new ObservableCollection<Materiel>();
             }
         
         }
