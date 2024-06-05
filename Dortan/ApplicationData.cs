@@ -8,26 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P1_BD_Locale
+namespace Dortan
 {
 
         public class ApplicationData
         {
        
-            private ObservableCollection<Agent> lesClients;
+            private ObservableCollection<Agent> lesAgents;
             private NpgsqlConnection connexion = null;   // futur lien à la BD
 
 
-        public ObservableCollection<Client> LesClients
+        public ObservableCollection<Agent> LesAgents
         {
             get
             {
-                return this.lesClients;
+                return this.lesAgents;
             }
 
             set
             {
-                this.lesClients = value;
+                this.lesAgents = value;
             }
         }
 
@@ -56,7 +56,7 @@ namespace P1_BD_Locale
             }
         public void Read()
             {
-             this.LesClients = new ObservableCollection<Client>();
+             this.LesAgents = new ObservableCollection<Agent>();
             }
         
         }
