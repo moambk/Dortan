@@ -24,5 +24,12 @@ namespace Dortan
 			set { this.identifiant = value; }
 		}
 
-	}
+        public Agent(string password, string identifiant)
+        {
+            this.Password = password;
+            this.Identifiant = identifiant;
+        }
+    }
+
+
 }
