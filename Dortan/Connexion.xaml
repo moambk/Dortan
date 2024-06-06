@@ -8,7 +8,7 @@
         Title="Connexion" Height="450" Width="800"
         ResizeMode="CanResizeWithGrip" Closing="Window_Closing">
     <Window.DataContext>
-        <local:ApplicationData x:Name="data"/>
+        <local:Agent x:Name="data"/>
     </Window.DataContext>
     <Grid Background="#FFD8D8D8" Margin="0,0,0,0">
         <Grid.RowDefinitions>

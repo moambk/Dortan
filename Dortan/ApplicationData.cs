@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Dortan
 {
@@ -17,8 +18,21 @@ namespace Dortan
 
             private ObservableCollection<Activite> lesActivites = new ObservableCollection<Activite>();
             private ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
+            private ObservableCollection<Agent> lesAgents = new ObservableCollection<Agent>();
             private NpgsqlConnection connexion = null;   // futur lien à la BD
 
+        public ObservableCollection<Agent> LesAgents
+        {
+            get
+            {
+                return this.lesAgents;
+            }
+
+            set
+            {
+                this.lesAgents = value;
+            }
+        }
         public ObservableCollection<Materiel> LesMateriels
         {
             get
@@ -60,33 +74,22 @@ namespace Dortan
 	   public ApplicationData()
         {
            
-            this.ConnexionBD();
-            this.Read();
         }
-        public void ConnexionBD()
-            {
-
-            try { 
-                Connexion = new NpgsqlConnection();
-                Connexion.ConnectionString = 
-                    "Server=srv-peda-new;" + 
-                    "port=5433;" +
-                    "Database=SAE2.01;" +
-                    "Search Path = Dortan;" +
-                    "uid=bekhoucm;" +
-                    "password=vadzM7;";
-                }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            }
+        
         public void Read()
             {
-             this.LesActivites = new ObservableCollection<Activite>();
-             this.LesMateriels = new ObservableCollection<Materiel>();
+                
             }
-        
+        public void TryConnexion(Agent Connexion)
+        {
+            String sql = $"Server = srv - peda - new; port = 5433; "
+                + $"Database=SAE2.01 Dortan;Search Path=Dortan;uid={Connexion.Identifiant};mpd={Connexion.Password};";
+            if (DataAccess.Instance.ConnexionBD(sql))
+                MessageBox.Show("probleme connexion");
+
+
         }
+
+    }
     
 }

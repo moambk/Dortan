@@ -9,92 +9,98 @@ using System.Threading.Tasks;
 namespace Dortan
 {
 
-        public class DataAccess
+    public class DataAccess
+    {
+        private static DataAccess instance;
+        private static string strConnexion;
+        private DataAccess()
         {
-            private static DataAccess instance;
-            private static string strConnexion = "Server=srv-peda-new;port=5433;"
-                             + "Database=SAE2.01 Dortan;Search Path=Dortan;uid=;vadzM7=;";
-            private DataAccess()
+        }
+
+
+        public static DataAccess Instance
+        {
+            get
             {
-                ConnexionBD();
-            }
-
-
-            public static DataAccess Instance
-            {
-                get
+                if (instance == null)
                 {
-                    if (instance == null)
-                    {
-                        instance = new DataAccess();
-                    }
-                    return instance;
+                    instance = new DataAccess();
                 }
-            }
-
-            public NpgsqlConnection? Connexion
-            {
-                get;
-                set;
-            }
-            public void ConnexionBD()
-            {
-                try
-                {
-                    Connexion = new NpgsqlConnection();
-                    Connexion.ConnectionString = strConnexion;
-                    Connexion.Open();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("pb de connexion : " + e);
-                    // juste pour le debug : à transformer en MsgBox  
-                }
-            }
-
-
-
-            public void DeconnexionBD()
-            {
-                try
-                {
-                    Connexion.Close();
-                }
-                catch (Exception e)
-                { Console.WriteLine("pb à la déconnexion  : " + e); }
-            }
-
-
-            public DataTable GetData(string selectSQL)
-            {
-                try
-                {
-                    NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectSQL, Connexion);
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-                    return dataTable;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("pb avec : " + selectSQL + e.ToString());
-                    return null;
-                }
-            }
-
-            public int SetData(string setSQL)
-            {
-
-                try
-                {
-                    NpgsqlCommand sqlCommand = new NpgsqlCommand(setSQL, Connexion);
-                    int nbLines = sqlCommand.ExecuteNonQuery();
-                    return nbLines;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("pb avec : " + setSQL + e.ToString());
-                    return 0;
-                }
+                return instance;
             }
         }
+
+        public NpgsqlConnection? Connexion
+        {
+            get;
+            set;
+        }
+        public bool ConnexionBD(string sql)
+        {
+            bool pbConnexion = false;
+            strConnexion = sql;
+            try
+            {
+                Connexion = new NpgsqlConnection();
+                Connexion.ConnectionString = strConnexion;
+                Connexion.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("pb de connexion : " + e);
+                pbConnexion = true;
+                // juste pour le debug : à transformer en MsgBox  
+            }
+            if (pbConnexion)
+            {
+                return pbConnexion;//retourne true
+            }else
+                return pbConnexion;//retourne false
+        }
+
+
+
+        public void DeconnexionBD()
+        {
+            try
+            {
+                Connexion.Close();
+            }
+            catch (Exception e)
+            { Console.WriteLine("pb à la déconnexion  : " + e); }
+        }
+
+
+        public DataTable GetData(string selectSQL)
+        {
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectSQL, Connexion);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                return dataTable;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("pb avec : " + selectSQL + e.ToString());
+                return null;
+            }
+        }
+
+        public int SetData(string setSQL)
+        {
+            
+            try
+            {
+                NpgsqlCommand sqlCommand = new NpgsqlCommand(setSQL, Connexion);
+                int nbLines = sqlCommand.ExecuteNonQuery();
+                return nbLines;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("pb avec : " + setSQL + e.ToString());
+                return 0;
+            }
+        }
+    }
  }

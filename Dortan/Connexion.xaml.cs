@@ -31,8 +31,9 @@ namespace Dortan
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow ouvrir = new MainWindow();
-            ouvrir.Show();
+            ApplicationData applicationData = new ApplicationData();
+            Agent agent = new Agent();
+            applicationData.TryConnexion(agent);
         }
     }
 }

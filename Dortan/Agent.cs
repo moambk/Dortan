@@ -29,6 +29,7 @@ namespace Dortan
             this.Password = password;
             this.Identifiant = identifiant;
         }
+		public Agent() { }
     }
 
 
