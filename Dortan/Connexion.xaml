@@ -63,7 +63,7 @@
                 Target="{Binding ElementName=txtBoxId, Mode=OneWay}" />
             <TextBox
                 x:Name="txtBoxId"
-                Text="{Binding Identifiant}"
+                Text="{Binding Identifiant, ValidatesOnExceptions=True}"
                 TextWrapping="Wrap" />
             <Label
                 x:Name="labelmpd"
@@ -72,7 +72,7 @@
             <TextBox
                 x:Name="txtBoxMdp"
                 Foreground="White"
-                Text="{Binding Password}"
+                Text="{Binding Password, ValidatesOnExceptions=True}"
                 TextWrapping="Wrap" />
             <Button
                 Width="100"
