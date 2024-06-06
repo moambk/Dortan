@@ -25,7 +25,7 @@ namespace Dortan
             InitializeComponent();
 
             Connexion pageDeConnexion = new Connexion();
-            pageDeConnexion.ShowDialog();
+            pageDeConnexion.;
         }
     }
 }

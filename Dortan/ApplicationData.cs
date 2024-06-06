@@ -94,10 +94,8 @@ namespace Dortan
             }
             else
             {
-                Connexion pageDeConnexion = new Connexion();
-                pageDeConnexion.Close();
-                MainWindow reOuverture = new MainWindow();
-                reOuverture.Show();
+                
+
             }
 
 

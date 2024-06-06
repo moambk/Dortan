@@ -46,6 +46,8 @@ namespace Dortan
             }
             applicationData.TryConnexion(nouvelEmploye);
             Console.WriteLine(employe);
+            Connexion pageDeConnexion = new Connexion();
+            pageDeConnexion.Hide();
         }
     }
 }
