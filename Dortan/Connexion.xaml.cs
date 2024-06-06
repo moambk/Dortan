@@ -31,7 +31,7 @@ namespace Dortan
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationData applicationData = new ApplicationData();
+            /*ApplicationData applicationData = new ApplicationData();
             Employe employe = new Employe();
             
             foreach (UIElement elements in StackPanelConnexion.Children)
@@ -47,7 +47,8 @@ namespace Dortan
             applicationData.TryConnexion(nouvelEmploye);
             Console.WriteLine(employe);
             Connexion pageDeConnexion = new Connexion();
-            pageDeConnexion.Hide();
+            pageDeConnexion.Hide();*/
+            this.DialogResult = true;
         }
     }
 }

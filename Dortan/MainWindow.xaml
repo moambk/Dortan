@@ -17,9 +17,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="29*"/>
-                    <RowDefinition Height="23*"/>
-                    <RowDefinition Height="23*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.Resources>
                     <Style TargetType="Button">
@@ -35,8 +35,8 @@
                 <TextBox HorizontalAlignment="Left" Margin="219,32,0,0" TextWrapping="Wrap" Text="Recherche rapide" VerticalAlignment="Top" Width="356" Grid.ColumnSpan="2" Height="18" />
                 <Image Grid.Column="2" Margin="160,34,226,123" Source="/Image/loupe.png" Stretch="Fill"/>
                 <Button Content="Recherche avancée" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="29" Margin="351,79,0,0" VerticalAlignment="Top" Width="92" Background="#FF480707" Foreground="White" FontSize="10"/>
-                <Image Margin="307,10,10,67" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="1" Height="80" />
-                <Image Margin="157,33,224,108" Source="/image/loupe.png" Stretch="Fill" Grid.Column="1"/>
+                <Image Margin="307,10,10,45" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="1" Height="80" />
+                <Image Margin="157,33,224,85" Source="/image/loupe.png" Stretch="Fill" Grid.Column="1"/>
             </Grid>
         </TabItem>
         <TabItem Header="Créer une ativité">
