@@ -40,6 +40,7 @@
             Source="/Image/Dortan.png"
             Stretch="Fill" />
         <StackPanel
+            x:Name="StackPanelConnexion"
             Grid.Row="1"
             Grid.Column="1"
             Margin="30,0,30,0">

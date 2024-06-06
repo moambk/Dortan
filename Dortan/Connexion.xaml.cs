@@ -32,12 +32,20 @@ namespace Dortan
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ApplicationData applicationData = new ApplicationData();
-            Employe agent = new Employe();
-            foreach (var item in OwnedWindows)
+            Employe employe = new Employe();
+            
+            foreach (UIElement elements in StackPanelConnexion.Children)
             {
-                
+                if (elements is TextBox)
+                {
+                    TextBox validite = (TextBox)elements;
+                    validite.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    Console.WriteLine(validite.Text);
+
+                }
             }
-            applicationData.TryConnexion(agent);
+            applicationData.TryConnexion(nouvelEmploye);
+            Console.WriteLine(employe);
         }
     }
 }
