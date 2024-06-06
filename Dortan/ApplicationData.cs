@@ -82,7 +82,7 @@ namespace Dortan
             }
         public void TryConnexion(Employe Connexion)
         {
-            String sql = $"Server = srv - peda - new; port = 5433; "
+            String sql = $"Server=srv-peda-new; port=5433; "
                 + $"Database=SAE2.01 Dortan;Search Path=Dortan;uid={Connexion.Identifiant};mpd={Connexion.Password};";
             if (DataAccess.Instance.ConnexionBD(sql))
                 MessageBox.Show("probleme connexion");
