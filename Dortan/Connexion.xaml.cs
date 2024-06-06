@@ -32,7 +32,7 @@ namespace Dortan
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ApplicationData applicationData = new ApplicationData();
-            Agent agent = new Agent();
+            Employe agent = new Employe();
             applicationData.TryConnexion(agent);
         }
     }

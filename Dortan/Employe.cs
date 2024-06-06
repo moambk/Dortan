@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dortan
 {
-    public class Agent
+    public class Employe
     {
 		private string identifiant;
 		private string password;
@@ -24,12 +24,12 @@ namespace Dortan
 			set { this.identifiant = value; }
 		}
 
-        public Agent(string password, string identifiant)
+        public Employe(string password, string identifiant)
         {
             this.Password = password;
             this.Identifiant = identifiant;
         }
-		public Agent() { }
+		public Employe() { }
     }
 
 

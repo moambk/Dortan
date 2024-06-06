@@ -18,19 +18,19 @@ namespace Dortan
 
             private ObservableCollection<Activite> lesActivites = new ObservableCollection<Activite>();
             private ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
-            private ObservableCollection<Agent> lesAgents = new ObservableCollection<Agent>();
+            private ObservableCollection<Employe> lesEmployes = new ObservableCollection<Employe>();
             private NpgsqlConnection connexion = null;   // futur lien à la BD
 
-        public ObservableCollection<Agent> LesAgents
+        public ObservableCollection<Employe> LesEmployes
         {
             get
             {
-                return this.lesAgents;
+                return this.lesEmployes;
             }
 
             set
             {
-                this.lesAgents = value;
+                this.lesEmployes = value;
             }
         }
         public ObservableCollection<Materiel> LesMateriels
@@ -80,7 +80,7 @@ namespace Dortan
             {
                 
             }
-        public void TryConnexion(Agent Connexion)
+        public void TryConnexion(Employe Connexion)
         {
             String sql = $"Server = srv - peda - new; port = 5433; "
                 + $"Database=SAE2.01 Dortan;Search Path=Dortan;uid={Connexion.Identifiant};mpd={Connexion.Password};";
