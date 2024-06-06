@@ -15,11 +15,11 @@ namespace Dortan
 		{
 			get { return this.password; }
 			set {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentNullException("mot de passe doit etre renseigné");
-                if (value.Length > 20)
-                    throw new ArgumentException("login trop long");
-                this.password = value; }
+                if (string.IsNullOrEmpty(value)) throw new ArgumentNullException("mot de passe doit etre renseigné");
+                else { this.password = value; }
+                if (value.Length > 20) throw new ArgumentException("le mot de passe est trop long");
+				else { this.password = value; }
+			}
 		}
 
 
@@ -27,11 +27,11 @@ namespace Dortan
 		{
 			get { return this.identifiant; }
 			set {
-				if (string.IsNullOrEmpty(value))
-					throw new ArgumentNullException("login doit etre renseigné");
-				if (value.Length > 8)
-					throw new ArgumentException("login trop long");
-				this.identifiant = value; }
+				if (string.IsNullOrEmpty(value)) {throw new ArgumentNullException("le login doit etre renseigné"); }
+				else { this.identifiant = value; }
+				if (value.Length > 8) { throw new ArgumentException("le login est trop long"); }
+				else { this.identifiant = value; }
+			}
 		}
 
         public Employe(string password, string identifiant)

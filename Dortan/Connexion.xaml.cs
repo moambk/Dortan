@@ -33,6 +33,10 @@ namespace Dortan
         {
             ApplicationData applicationData = new ApplicationData();
             Employe agent = new Employe();
+            foreach (var item in OwnedWindows)
+            {
+                
+            }
             applicationData.TryConnexion(agent);
         }
     }
