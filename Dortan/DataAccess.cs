@@ -13,7 +13,7 @@ namespace Dortan
         {
             private static DataAccess instance;
             private static string strConnexion = "Server=srv-peda-new;port=5433;"
-                             + "Database=;Search Path=;uid=;password=;";
+                             + "Database=SAE2.01 Dortan;Search Path=Dortan;uid=;vadzM7=;";
             private DataAccess()
             {
                 ConnexionBD();
