@@ -51,11 +51,7 @@ namespace Dortan
                 pbConnexion = true;
                 // juste pour le debug : à transformer en MsgBox  
             }
-            if (pbConnexion)
-            {
-                return pbConnexion;//retourne true
-            }else
-                return pbConnexion;//retourne false
+            return pbConnexion;
         }
 
 
