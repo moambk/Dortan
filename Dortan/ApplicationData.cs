@@ -83,19 +83,19 @@ namespace Dortan
                 
             }
         }
-        public void TryConnexion(Employe connexion)
+        public bool TryConnexion(Employe connexion)
         {
             String sql = $"Server=srv-peda-new; port=5433; "
                 + $"Database=SAE2.01 Dortan;Search Path=Dortan;uid={connexion.Identifiant};password={connexion.Password};";
             if (DataAccess.Instance.ConnexionBD(sql))
             { 
-                MessageBox.Show("probleme connexion"); 
-            
+                MessageBox.Show("probleme connexion");
+                return false;
             }
             else
             {
-                
 
+                return true;
             }
 
 

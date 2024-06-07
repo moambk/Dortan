@@ -26,12 +26,16 @@ namespace Dortan
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (this.DialogResult != true)
+            {
+                Application.Current.Shutdown();
+            }
+;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*ApplicationData applicationData = new ApplicationData();
+            ApplicationData applicationData = new ApplicationData();
             Employe employe = new Employe();
             
             foreach (UIElement elements in StackPanelConnexion.Children)
@@ -44,11 +48,10 @@ namespace Dortan
 
                 }
             }
-            applicationData.TryConnexion(nouvelEmploye);
+            if (applicationData.TryConnexion(nouvelEmploye)) { this.DialogResult = true; };
             Console.WriteLine(employe);
-            Connexion pageDeConnexion = new Connexion();
-            pageDeConnexion.Hide();*/
-            this.DialogResult = true;
+
+
         }
     }
 }
