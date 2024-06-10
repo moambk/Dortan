@@ -8,17 +8,42 @@ namespace Dortan
 {
     public class Activite
     {
-        private string nom;
+        private int num_activite;
+        private string nom_activite;
 
-        public string Nom
+        public string Nom_activite
         {
-            get { return this.nom; }
-            set { this.nom = value; }
+            get { return this.nom_activite; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) { throw new ArgumentException("tous les champs doivent être remplis !"); }
+                else { this.nom_activite = value; }
+                if (value.Length > 100) { throw new ArgumentException("Nom de l'activité trop long"); }
+                else { this.nom_activite = value; }
+            }
         }
 
-        public Activite(string nom)
+
+        public int Num_activite
         {
-            this.Nom = nom;
+            get { return this.num_activite; }
+            set { this.num_activite = value; }
+        }
+
+        public Activite()
+        {
+        }
+
+        public Activite(int num_activite,string nom_activite)
+        {
+            this.Nom_activite = nom_activite;
+            this.Num_activite = num_activite;
+        }
+
+        public override string? ToString()
+        {
+            return $"NUM ACTIVTE : {Num_activite} " +
+                   $"|| NOM ACTIVTE : {Nom_activite} ";
         }
     }
 }

@@ -25,17 +25,34 @@ namespace Dortan
         public MainWindow()
         {
 
-            InitializeComponent();
+
             Connexion pageDeConnexion = new Connexion();
+            ApplicationData readActivite = new ApplicationData();
             pageDeConnexion.ShowDialog();
-
-
+            InitializeComponent();
+            readActivite.Read();
+            readActivite.ReadVisu();
 
 
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationData applicationData = new ApplicationData();
+            Activite employe = new Activite();
 
+            foreach (UIElement elements in StackPanelCreerActivite.Children)
+            {
+                if (elements is TextBox )
+                {
+                    TextBox information = (TextBox)elements;
+                    information.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    Console.WriteLine(information.Text);
 
+                }
+            }
+
+        }
     }
 }

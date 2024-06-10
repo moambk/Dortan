@@ -19,6 +19,7 @@ namespace Dortan
     /// </summary>
     public partial class Connexion : Window
     {
+
         public Connexion()
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace Dortan
             {
                 Application.Current.Shutdown();
             }
-;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,10 @@ namespace Dortan
 
                 }
             }
-            if (applicationData.TryConnexion(nouvelEmploye)) { this.DialogResult = true; };
+            if (applicationData.TryConnexion(nouvelEmploye)) 
+            {
+                this.DialogResult = true; 
+            };
             Console.WriteLine(employe);
 
 

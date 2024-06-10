@@ -9,8 +9,8 @@
     Width="800"
     Height="450"
     Closing="Window_Closing"
-    ResizeMode="CanResizeWithGrip"
-    mc:Ignorable="d">
+    ResizeMode="NoResize"
+    mc:Ignorable="d" Icon="/image/Dortan.png">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Style.Triggers>

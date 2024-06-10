@@ -3,6 +3,7 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,82 +14,93 @@ using System.Windows;
 namespace Dortan
 {
 
-        public class ApplicationData
+    public class ApplicationData
     {
 
-            private ObservableCollection<Activite> lesActivites = new ObservableCollection<Activite>();
-            private ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
-            private ObservableCollection<Employe> lesEmployes = new ObservableCollection<Employe>();
-            private NpgsqlConnection connexion = null;   // futur lien à la BD
+        private static ObservableCollection<Activite> lesActivites = new ObservableCollection<Activite>();
+        private static ObservableCollection<Materiel> lesMateriels = new ObservableCollection<Materiel>();
+        private static ObservableCollection<Employe> lesEmployes = new ObservableCollection<Employe>();
+        private NpgsqlConnection connexion = null;   // futur lien à la BD
 
-        public ObservableCollection<Employe> LesEmployes
+        public static ObservableCollection<Activite> LesActivites  { get => lesActivites; set => lesActivites = value; }
+        public static ObservableCollection<Materiel> LesMateriels { get => lesMateriels; set => lesMateriels = value; }
+        public static ObservableCollection<Employe> LesEmployes { get => lesEmployes; set => lesEmployes = value; }
+
+        public NpgsqlConnection Connexion
         {
             get
             {
-                return this.lesEmployes;
+                return this.connexion;
             }
 
             set
             {
-                this.lesEmployes = value;
-            }
-        }
-        public ObservableCollection<Materiel> LesMateriels
-        {
-            get
-            {
-                return this.lesMateriels;
-            }
-
-            set
-            {
-                this.lesMateriels = value;
-            }
-        }
-        public ObservableCollection<Activite> LesActivites
-        {
-            get
-            {
-                return this.lesActivites;
-            }
-
-            set
-            {
-                this.lesActivites = value;
+                this.connexion = value;
             }
         }
 
-       public NpgsqlConnection Connexion 
+        public ApplicationData()
         {
-            get
-            {
-                return this.connexion ;
-            }
 
-            set
+        }
+
+        public void Read()
+        {
+            string sql = "SELECT num_activite, nom_activite FROM activite";
+
+            try
             {
-                this.connexion  = value;
+
+
+                foreach (DataRow res in DataAccess.Instance.GetData(sql).Rows)
+                {
+                    Activite nouveau = new Activite(int.Parse(res["num_activite"].ToString()), res["nom_activite"].ToString());
+                    LesActivites.Add(nouveau);
+                    foreach (Activite cca in LesActivites)
+                    {
+                        Console.WriteLine(cca.ToString());
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
-       
-	   public ApplicationData()
+        public void ReadVisu()
         {
-           
-        }
-        
-        public void Read(bool connexionReussi)
+            string sql = "SELECT num_activite, nom_activite FROM activite ac" +
+                "join ";
+
+            try
             {
-            if (!connexionReussi)
+
+
+                foreach (DataRow res in DataAccess.Instance.GetData(sql).Rows)
+                {
+                    Activite nouveau = new Activite(int.Parse(res["num_activite"].ToString()), res["nom_activite"].ToString());
+                    LesActivites.Add(nouveau);
+                    foreach (Activite cca in LesActivites)
+                    {
+                        Console.WriteLine(cca.ToString());
+                    }
+
+                }
+            }
+            catch (Exception ex)
             {
-                
+                MessageBox.Show(ex.Message);
             }
         }
         public bool TryConnexion(Employe connexion)
         {
-            String sql = $"Server=srv-peda-new; port=5433; "
+
+            string sql = $"Host=localhost;Username={connexion.Identifiant};Password={connexion.Password};Database=caca sae";
+            string sql2 = $"Server=srv-peda-new; port=5433; "
                 + $"Database=SAE2.01 Dortan;Search Path=Dortan;uid={connexion.Identifiant};password={connexion.Password};";
             if (DataAccess.Instance.ConnexionBD(sql))
-            { 
+            {
                 MessageBox.Show("probleme connexion");
                 return false;
             }
@@ -97,10 +109,9 @@ namespace Dortan
 
                 return true;
             }
-
-
-        }
-
     }
-    
+
+
+}
+
 }

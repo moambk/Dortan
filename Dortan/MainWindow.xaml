@@ -8,18 +8,31 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    mc:Ignorable="d">
+    mc:Ignorable="d" ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <local:Activite x:Key="Num_activite"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:ApplicationData x:Name="data"/>
+    </Window.DataContext>
     <TabControl>
         <TabItem Header="Réserver une activité">
             <Grid Background="#FFD8D8D8" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+
+                    <RowDefinition Height="113*"/>
+                    <RowDefinition Height="293*"/>
+
                 </Grid.RowDefinitions>
                 <Grid.Resources>
                     <Style TargetType="Button">
@@ -27,16 +40,18 @@
                     </Style>
 
                 </Grid.Resources>
-
-                <Button Content="Activité 1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Width="300" Height="100" Background="#FFEDE97A" Margin="0,10,0,0"/>
-                <Button Content="Activité 2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="300" Height="100" Background="#FF47C5EF"/>
-                <Button Content="Activité 3" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="300" Height="100" Background="#FF47C5EF"/>
-                <Button Content="Activité 4" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="300" Height="100" Background="#FF47C5EF"/>
-                <TextBox HorizontalAlignment="Left" Margin="219,32,0,0" TextWrapping="Wrap" Text="Recherche rapide" VerticalAlignment="Top" Width="356" Grid.ColumnSpan="2" Height="18" />
-                <Image Grid.Column="2" Margin="160,34,226,123" Source="/Image/loupe.png" Stretch="Fill"/>
-                <Button Content="Recherche avancée" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="29" Margin="351,79,0,0" VerticalAlignment="Top" Width="92" Background="#FF480707" Foreground="White" FontSize="10"/>
-                <Image Margin="307,10,10,45" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="1" Height="80" />
-                <Image Margin="157,33,224,85" Source="/image/loupe.png" Stretch="Fill" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Center" Margin="0,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="18" />
+                <Button Content="Recherche avancée" HorizontalAlignment="Center" Height="29" VerticalAlignment="Top" Width="92" Background="#FF480707" Foreground="White" FontSize="10" Margin="0,74,0,0"/>
+                <Image Margin="682,10,10,10" Source="/Image/Dortan.png" Stretch="Fill" />
+                <Image Margin="558,32,219,62" Source="/image/loupe.png" Stretch="Fill"/>
+                <DataGrid Grid.Row="1" Name="dgActiviter" AutoGenerateColumns="False" IsReadOnly="True"
+                          ItemsSource="{Binding LesActivites}" HorizontalAlignment="Left" 
+                          VerticalAlignment="Center" Margin="495,0,0,0" MinHeight="150" Width="250" Height="200" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Numéro Activité" Width="125" Binding="{Binding Num_activite}"/>
+                        <DataGridTextColumn Header="Nom Activté" Width="125" Binding="{Binding Nom_activite}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </TabItem>
         <TabItem Header="Créer une ativité">
@@ -46,7 +61,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1" Margin="30,50,30,50">
+                <StackPanel x:Name="StackPanelCreerActivite" Grid.Column="1" Margin="30,50,30,50">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox">
                             <Setter Property="Foreground" Value="Gray" ></Setter>
@@ -56,13 +71,13 @@
                         </Style>
                     </StackPanel.Resources>
                     <Label Content="(*) Tous les champs sont obligatoires" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Gray"/>
-                    <Label Content="Nom *"/>
-                    <TextBox TextWrapping="Wrap" Text="Activité 1"/>
+                    <Label x:Name="labelNomActivite" Content="Nom *" Target="{Binding ElementName=txtBoxNomActivte, Mode=OneWay}" />
+                    <TextBox x:Name="txtBoxNomActivte" TextWrapping="Wrap" Text="{Binding Nom_activite, ValidatesOnExceptions=True}"/>
                     <Label Content="Durée *"/>
                     <TextBox TextWrapping="Wrap" Text="en heure"/>
                     <Label Content="Description *"/>
                     <TextBox TextWrapping="Wrap" Text="..."/>
-                    <Button Content="Valider" Margin="0,15,0,0" Width="100" Height="25" FontSize="14" Background="#FFDDDDDD"/>
+                    <Button Content="Valider" Margin="0,15,0,0" Width="100" Height="25" FontSize="14" Background="#FFDDDDDD" Click="Button_Click"/>
                 </StackPanel>
                 <Image Margin="175,10,10,316" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="2"  Width="80" Height="80"/>
 
@@ -71,30 +86,18 @@
         </TabItem>
         <TabItem Header="Visualiser une ativité">
             <Grid Background="#FFD8D8D8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1" Margin="30,50,30,50">
-                    <StackPanel.Resources>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Foreground" Value="Gray" ></Setter>
-                        </Style>
-                        <Style TargetType="Label">
-                            <Setter Property="FontWeight" Value="Bold"></Setter>
-                        </Style>
-                    </StackPanel.Resources>
-                    <Label Content="(*) Tous les champs sont obligatoires" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Gray"/>
-                    <Label Content="Nom *"/>
-                    <TextBox TextWrapping="Wrap" Text="Activité 1"/>
-                    <Label Content="Durée *"/>
-                    <TextBox TextWrapping="Wrap" Text="en heure"/>
-                    <Label Content="Description *"/>
-                    <TextBox TextWrapping="Wrap" Text="..."/>
-                    <Button Content="Valider" Margin="0,15,0,0" Width="100" Height="25" FontSize="14" Background="#FFDDDDDD"/>
-                </StackPanel>
-                <Image Margin="175,10,10,316" Source="/Image/Dortan.png" Stretch="Fill" Grid.Column="2"  Width="80" Height="80"/>
+
+                <DataGrid Name="dgVisualiser" AutoGenerateColumns="False" IsReadOnly="True"
+                    ItemsSource="{Binding LesActivites}" HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" Margin="10,10,0,0" MinHeight="150" Width="250" Height="200" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Numéro Activité" Width="125" Binding="{Binding Num_activite}"/>
+                        <DataGridTextColumn Header="Nom Activté" Width="125" Binding="{Binding Nom_activite}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Image Margin="704,10,10,316" Source="/Image/Dortan.png" Stretch="Fill"  Width="80" Height="80"/>
+
 
 
             </Grid>
