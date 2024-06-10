@@ -42,7 +42,7 @@ namespace Dortan
             ApplicationData applicationData = new ApplicationData();
             Activite employe = new Activite();
 
-            foreach (UIElement elements in StackPanelCreerActivite.Children)
+            /*foreach (UIElement elements in )
             {
                 if (elements is TextBox )
                 {
@@ -51,7 +51,7 @@ namespace Dortan
                     Console.WriteLine(information.Text);
 
                 }
-            }
+            }*/
 
         }
     }

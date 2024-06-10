@@ -34,6 +34,7 @@ namespace Dortan
         {
         }
 
+       
         public Activite(int num_activite,string nom_activite)
         {
             this.Nom_activite = nom_activite;

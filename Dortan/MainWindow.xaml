@@ -8,7 +8,7 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    mc:Ignorable="d" ResizeMode="CanResizeWithGrip">
+    mc:Ignorable="d" ResizeMode="NoResize" >
     <Window.Resources>
         <Style TargetType="TextBox">
             <Style.Triggers>
@@ -87,16 +87,12 @@
         <TabItem Header="Visualiser une ativité">
             <Grid Background="#FFD8D8D8">
 
-                <DataGrid Name="dgVisualiser" AutoGenerateColumns="False" IsReadOnly="True"
-                    ItemsSource="{Binding LesActivites}" HorizontalAlignment="Left" 
+                <DataGrid Name="dgVisualiser" IsReadOnly="True"
+                    ItemsSource="{Binding Visualiser}" HorizontalAlignment="Left"  AutoGenerateColumns="True"
                     VerticalAlignment="Top" Margin="10,10,0,0" MinHeight="150" Width="250" Height="200" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Numéro Activité" Width="125" Binding="{Binding Num_activite}"/>
-                        <DataGridTextColumn Header="Nom Activté" Width="125" Binding="{Binding Nom_activite}"/>
-                    </DataGrid.Columns>
                 </DataGrid>
 
-                <Image Margin="704,10,10,316" Source="/Image/Dortan.png" Stretch="Fill"  Width="80" Height="80"/>
+                <Image Margin="704,10,10,316" Source="/Image/Dortan.png" Stretch="Fill"  Width="80" Height="80" RenderTransformOrigin="0.031,0.582"/>
 
 
 
